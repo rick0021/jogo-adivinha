@@ -8,22 +8,35 @@ var resposta =0
 
 var resposta_usuario="y"
 var jogar= true
-while(jogar==true){
-    resposta = Number(prompt("entre com um numero(de 1 ate "+ max))
-    if (resposta == numero) {
-        alert("voce acertou") 
-    }else{
-         alert("voce errou")
-    }
-    alert(numero)
-    
-    
-    resposta_usuario= prompt("jogar de novo?(y/n)")
-    if(resposta_usuario=="y"){
-        jogar=true
-    }else{
-        jogar=false
-    }
 
+
+window.onload = ()=>{
+    document.querySelector("#queijo").addEventListener("click",()=>{
+        escolhe_numero()
+        jogo()
+    })
 }
-alert("ate mais")
+
+
+
+function jogo(){
+    if (resposta == numero) {
+        // alert("voce acertou")
+        mostra_resultado("voce acertou")
+    }else{
+        // alert("voce errou")
+        mostra_resultado("voce errou")
+    }
+}
+
+function escolhe_numero(){
+    numero = Math.random() * (max - min) + min;
+    numero = Math.ceil(numero)
+    resposta = Number(document.querySelector("#form_input").value)
+    // resposta = Number(prompt("entre com um numero(de 1 ate "+ max))
+}
+
+function mostra_resultado(texto){
+    document.querySelector("#game_result").innerHTML = texto
+    document.querySelector("#game_number").innerHTML = "O numero era: " + numero
+}
